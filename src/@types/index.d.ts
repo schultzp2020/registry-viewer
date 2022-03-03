@@ -56,11 +56,9 @@ declare module 'custom-types' {
 
   export type TypeWithErrorReturn<T> = [T, null] | [null, Error];
 
-  export type devfileYAML = string | null;
-
   export type devfileJSON = Record<string, unknown> | string | number | null | undefined;
 
-  export type GetDevfileYAML = [devfileYAML, devfileJSON, string[]];
+  export type GetDevfileYAML = [string, devfileJSON, string[]];
 
   export type GetDevfileRegistryJSON = [Devfile[], string[]];
 

@@ -1,9 +1,8 @@
-import type { Devfile, HostLocal, HostURL, GetDevfileYAML } from 'custom-types';
+import type { Devfile, HostLocal, HostURL, GetDevfileYAML, devfileJSON } from 'custom-types';
 import { getHosts } from '@src/util/server';
 import { promises as fs } from 'fs';
 import path from 'path';
 import { is } from 'typescript-is';
-// @ts-expect-error js-yaml has no type definitions
 import { load as yamlToJSON } from 'js-yaml';
 
 /**
@@ -45,8 +44,7 @@ export const getLocalYAML = async (devfileName: string, directory: string): Prom
  * @returns a array (tuple) with the devfile YAML as the first element and the potential errors as the second element
  */
 export const getDevfileYAML = async (devfile: Devfile): Promise<GetDevfileYAML> => {
-  let devfileYAML = null;
-  let devfileJSON = null;
+  let devfileYAML = '';
 
   const [hosts, hostErrors] = await getHosts();
 
@@ -61,7 +59,7 @@ export const getDevfileYAML = async (devfile: Devfile): Promise<GetDevfileYAML> 
     }
   }
 
-  devfileJSON = yamlToJSON(devfileYAML);
+  const devfileJSON = yamlToJSON(devfileYAML) as devfileJSON;
 
   const errorMessages = hostErrors.map((error) => error?.message || '');
 

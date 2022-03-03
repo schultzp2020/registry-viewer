@@ -170,7 +170,7 @@ Configure the registry viewer through config file.
 
 You can add local environment variables by creating an `.env.local` file in the root registry viewer directory to store the environment variables.
 
-The environment variable `DEVFILE_VIEWER_ROOT` controls the registry viewer's base path. Note: Defaults to `/`.
+The environment variable `NEXT_BASE_PATH` controls the registry viewer's base path. Note: Defaults to `/`.
 
 The environment variable `DEVFILE_COMMUNITY_HOST` controls whether the registry viewer uses the community registry. Note: Defaults to `true` and any value assigned will be `false`.
 
